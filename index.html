@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Concept study: a 3.4 m hydraulic six-legged carrier walker</title>
+<meta name="description" content="A paper concept study of a six-legged hydraulic walking carrier (3.4 m, 2 t payload, hydrogen fuel cell). Not built. Looking for technical review.">
+<style>
+  :root { --paper:#F4EDE0; --ink:#1D1A17; --muted:#6B6258; --acc:#D9692A; --teal:#1F6F78; --rule:#CDBFA8; --light:#E6DCC8; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--paper); color:var(--ink); font:17px/1.55 Georgia, "Times New Roman", serif; }
+  main { max-width: 760px; margin: 0 auto; padding: 48px 22px 72px; }
+  h1 { font:600 30px/1.2 "Segoe UI", Helvetica, Arial, sans-serif; margin:0 0 8px; letter-spacing:-0.01em; }
+  h2 { font:600 19px/1.3 "Segoe UI", Helvetica, Arial, sans-serif; margin:40px 0 10px; color:var(--teal); }
+  p { margin: 0 0 14px; }
+  .lead { font-size:19px; color:var(--muted); margin-bottom:22px; }
+  .flag { display:inline-block; font:600 13px/1 "Segoe UI", Helvetica, Arial, sans-serif; letter-spacing:.04em; text-transform:uppercase;
+          background:var(--acc); color:#fff; padding:6px 9px; border-radius:3px; margin-bottom:18px; }
+  table { width:100%; border-collapse:collapse; font:15px/1.45 "Segoe UI", Helvetica, Arial, sans-serif; margin: 6px 0 4px; }
+  th, td { text-align:left; padding:7px 10px; border-bottom:1px solid var(--rule); vertical-align:top; }
+  th { width:34%; font-weight:600; color:var(--muted); }
+  .note { font:14px/1.5 "Segoe UI", Helvetica, Arial, sans-serif; color:var(--muted); }
+  figure { margin: 22px 0; }
+  figcaption { font:13px/1.4 "Segoe UI", Helvetica, Arial, sans-serif; color:var(--muted); margin-top:6px; }
+  svg { width:100%; height:auto; display:block; background:var(--light); border-radius:4px; }
+  ul { padding-left: 20px; margin: 0 0 14px; }
+  li { margin-bottom: 6px; }
+  .ask { background:var(--light); border-left:4px solid var(--acc); padding:14px 18px; border-radius:0 4px 4px 0; }
+  footer { margin-top:44px; padding-top:16px; border-top:1px solid var(--rule); font:14px/1.5 "Segoe UI", Helvetica, Arial, sans-serif; color:var(--muted); }
+  a { color:var(--teal); }
+</style>
+</head>
+<body>
+<main>
+  <span class="flag">Concept stage · not built</span>
+  <h1>A 3.4 m hydraulic six-legged carrier walker: a paper concept study</h1>
+  <p class="lead">A worked-through concept for a legged machine that carries 2 tonnes over rough ground, built from components that exist today. It has not been built and has not been tested. I am looking for technical review.</p>
+
+  <h2>What this is</h2>
+  <p>The machine has six legs around a central platform, a 1.7 m payload cube on top, two six-joint arms, electro-hydrostatic leg actuators and a hydrogen fuel cell power plant. The silhouette is borrowed from a fictional walker in a video game; everything inside is conventional engineering: steel tube legs, hydraulic cylinders, 70 MPa tanks, lidar and thermal cameras.</p>
+  <p>The study follows the usual path of a concept stage: requirements, size and proportions, layout and centre of mass, leg and actuator sizing, energy budget, power plant, electrical bus, control architecture and safety. Every figure is tagged as either a calculation from a script or a stated assumption, so the weak spots are visible.</p>
+
+  <figure>
+    <svg viewBox="0 0 760 450" role="img" aria-label="Side section of the concept: payload cube on a platform with fuel cell, hydrogen tanks, battery and core computers, three of six legs shown">
+      <rect x="0" y="0" width="760" height="450" fill="#E6DCC8"/>
+      <line x1="20" y1="430" x2="740" y2="430" stroke="#6B6258" stroke-width="2"/>
+      <!-- legs (far leg lighter) -->
+      <polyline points="290,322 270,362 276,426" fill="none" stroke="#A39B8B" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+      <polyline points="150,322 100,352 118,426" fill="none" stroke="#5E564C" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+      <polyline points="420,322 472,354 452,426" fill="none" stroke="#5E564C" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+      <rect x="436" y="424" width="34" height="6" fill="#1D1A17"/>
+      <rect x="102" y="424" width="34" height="6" fill="#1D1A17"/>
+      <rect x="259" y="424" width="34" height="6" fill="#6B6258"/>
+      <!-- payload cube -->
+      <rect x="190" y="40" width="190" height="190" fill="#E9E4D8" stroke="#1D1A17" stroke-width="2.5"/>
+      <text x="285" y="128" text-anchor="middle" font-family="Segoe UI, Arial" font-size="16" fill="#1D1A17">payload cube</text>
+      <text x="285" y="150" text-anchor="middle" font-family="Segoe UI, Arial" font-size="14" fill="#6B6258">2 t, 1.7 m side</text>
+      <!-- platform -->
+      <rect x="120" y="230" width="330" height="92" rx="14" fill="#C8BBA4" stroke="#1D1A17" stroke-width="2.5"/>
+      <text x="185" y="260" text-anchor="middle" font-family="Segoe UI, Arial" font-size="13" fill="#1D1A17">buffer battery</text>
+      <text x="285" y="260" text-anchor="middle" font-family="Segoe UI, Arial" font-size="13" fill="#1D1A17">core + comms</text>
+      <text x="388" y="260" text-anchor="middle" font-family="Segoe UI, Arial" font-size="13" fill="#1D1A17">actuator pumps</text>
+      <text x="215" y="300" text-anchor="middle" font-family="Segoe UI, Arial" font-size="13" fill="#1D1A17">H2 tanks, ~570 L, 70 MPa</text>
+      <text x="388" y="300" text-anchor="middle" font-family="Segoe UI, Arial" font-size="13" fill="#1D1A17">fuel cell 62 kW</text>
+      <!-- radiators -->
+      <rect x="76" y="250" width="38" height="62" rx="6" fill="#E8D8D0" stroke="#6B6258" stroke-width="2"/>
+      <text x="95" y="242" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" fill="#6B6258">radiators</text>
+      <!-- head -->
+      <rect x="458" y="252" width="62" height="50" rx="8" fill="#8F8672" stroke="#1D1A17" stroke-width="2"/>
+      <text x="520" y="324" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" fill="#6B6258">sensor head</text>
+      <!-- arm -->
+      <polyline points="446,242 528,172 604,262" fill="none" stroke="#5E564C" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="608" cy="268" r="16" fill="#D9692A" stroke="#1D1A17" stroke-width="2"/>
+      <text x="608" y="306" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" fill="#6B6258">arm, 2.55 m reach</text>
+      <text x="440" y="60" font-family="Segoe UI, Arial" font-size="13" fill="#6B6258">Side section, early estimate.</text>
+      <text x="440" y="78" font-family="Segoe UI, Arial" font-size="13" fill="#6B6258">Legs are schematic.</text>
+      <text x="22" y="448" font-family="Segoe UI, Arial" font-size="12" fill="#6B6258">ground</text>
+    </svg>
+    <figcaption>Schematic layout. Mass 2.9 t empty, 4.9 t loaded; centre of mass about 1.24 m empty and 1.77 m loaded.</figcaption>
+  </figure>
+
+  <h2>Main figures</h2>
+  <p class="note">Early estimates from a calculation script on stated assumptions. They are for review, not for building from.</p>
+  <table>
+    <tr><th>Height / leg span</th><td>3.4 m to top of payload cube; 3.4 m across the knees; 0.75 m ground clearance</td></tr>
+    <tr><th>Mass</th><td>2.9 t empty, 4.9 t with a 2 t payload (2.2 t proof load)</td></tr>
+    <tr><th>Gait and speed</th><td>Tripod gait up to 1 m/s, wave gait about 0.2 m/s; 1.35 s cycle, 0.68 m stride; obstacle height up to 0.5 m</td></tr>
+    <tr><th>Stability limit</th><td>23° on a tripod gait with payload (requirement 15°); 37° on six legs; 52° lying on the belly</td></tr>
+    <tr><th>Leg loads</th><td>Design foot force 32 kN; hip lift moment 33.5 kN·m, knee 20.9 kN·m, yaw 6.9 kN·m</td></tr>
+    <tr><th>Actuators</th><td>18 electro-hydrostatic units; hip cylinder 168 kN (bore 92 mm), knee cylinder 104 kN (bore 73 mm)</td></tr>
+    <tr><th>Legs and feet</th><td>Steel tubes 149 × 7.4 and 127 × 6.4 mm, S355; 0.45 m foot, about 100 kPa ground pressure</td></tr>
+    <tr><th>Arms</th><td>Two arms, six joints each, 2.55 m reach, 300 kg at 2 m reach</td></tr>
+    <tr><th>Energy</th><td>48 kW walking at 1 m/s, 121 kW peak; 238 kWh per 8 h shift, 30 kW average</td></tr>
+    <tr><th>Power plant</th><td>62 kW fuel cell, about 570 L of hydrogen tanks at 70 MPa (14.3 kg), 6 kWh buffer battery; 700 V DC bus, 24 V for sensors and computers</td></tr>
+    <tr><th>Sensing and control</th><td>About 200 sensor channels (cameras, thermal, lidar); five control levels, two central computers in hot standby, a separate safety controller</td></tr>
+    <tr><th>Safety</th><td>Human-held key, normally closed stop circuit, 1.5 m and 4 m zones, 1.2 m stopping distance from 1 m/s. No weapons.</td></tr>
+  </table>
+
+  <h2>Where it honestly stands</h2>
+  <ul>
+    <li>Most of the parts exist today at technology readiness 8 to 9: welded steel frames, hydraulic cylinders, forklift fuel cells, 70 MPa tanks, LiFePO4 batteries, lidar, thermal cameras.</li>
+    <li>Less mature: electro-hydrostatic actuators in walking machines (about 7), six-legged walking on real rough terrain (about 6), heavy machines working near people without a driver (about 5).</li>
+    <li>The whole machine sits at about 4. Nobody has built it.</li>
+    <li>Nothing here has been built or tested. A 40 cm bench-top scale model is planned as the first hardware step, followed by a single leg on a test stand.</li>
+  </ul>
+
+  <h2>What I am asking for</h2>
+  <div class="ask">
+    <ul>
+      <li><strong>A critical technical review:</strong> which assumptions would you check first, and where is the concept most likely to fail?</li>
+      <li><strong>Component data:</strong> datasheets or typical figures for cylinders, pumps and valves at these loads, or a pointer to the right product family.</li>
+      <li><strong>Collaboration:</strong> a student project or lab exercise on any part (leg dynamics, gait, actuator sizing).</li>
+    </ul>
+    <p style="margin:0">I am not selling anything. A short reply, even "your hip moment looks wrong", helps.</p>
+  </div>
+
+  <footer>
+    <p><strong>Ivan Kovalev</strong>, Astana, Kazakhstan · <a href="mailto:ik914735@gmail.com">ik914735@gmail.com</a></p>
+    <p>I work with an AI assistant (Claude, by Anthropic) and check the results myself. The calculations come from a script whose formulas were checked against published figures of real machines; every number in the full study is marked as sourced, calculated or assumed. The silhouette reference is a fictional machine from a video game; the game's artwork belongs to its owners and is not used here.</p>
+  </footer>
+</main>
+</body>
+</html>
